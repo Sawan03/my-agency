@@ -3,432 +3,505 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuralFlow | Architecting Intelligence</title>
+    <title>Sawan Rathore | NeuralFlow Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        bg: '#030712', // Very dark blue/black
-                        surface: '#0F172A',
-                        primary: '#6366f1', // Indigo
-                        accent: '#06b6d4', // Cyan
-                        glow: '#818cf8'
-                    },
-                    backgroundImage: {
-                        'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
-                        'radial-glow': "radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%)",
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'spin-slow': 'spin 12s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                        brand: {
+                            dark: '#0f172a',  // Slate 900
+                            light: '#f8fafc', // Slate 50
+                            blue: '#2563eb',  // Royal Blue
+                            accent: '#f59e0b', // Amber Gold
                         }
+                    },
+                    boxShadow: {
+                        'elegant': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                        'glow': '0 0 15px rgba(37, 99, 235, 0.5)',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #030712;
-            color: #e2e8f0;
-            overflow-x: hidden;
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-
-        /* Grid Background Animation */
-        .tech-grid {
-            background-size: 40px 40px;
-            mask-image: linear-gradient(to bottom, transparent, 10%, white, 90%, transparent);
-            transform: perspective(500px) rotateX(60deg);
-            opacity: 0.2;
-        }
-
-        /* Glassmorphism */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .glass-nav {
-            background: rgba(3, 7, 18, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Text Glow */
-        .text-glow {
-            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-
-        /* Reveal on Scroll Class */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Glitch effect for hidden members */
-        .glitch-text:hover {
-            animation: wiggle 0.3s linear infinite;
-            color: #06b6d4;
-        }
-        @keyframes wiggle {
-            0% { transform: translate(0) }
-            25% { transform: translate(-2px, 1px) }
-            50% { transform: translate(2px, -1px) }
-            75% { transform: translate(-1px, 2px) }
-            100% { transform: translate(0) }
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-primary selection:text-white">
+<body class="font-sans text-slate-800 antialiased">
 
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-20"></div>
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-pulse-slow"></div>
-        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-pulse-slow" style="animation-delay: 2s;"></div>
-    </div>
-
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 top-0 border-b border-white/5 bg-bg/80 backdrop-blur-xl">
+    <nav class="fixed w-full z-50 top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 cursor-pointer group">
-                    <a href="#" class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all">
-                            <i class="fa-solid fa-brain text-white text-lg"></i>
-                        </div>
-                        <span class="font-display font-bold text-2xl tracking-tight text-white">Neural<span class="text-primary">Flow</span></span>
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <span class="text-2xl font-heading font-bold text-slate-900">&lt;Sawan<span class="text-brand-blue">Rathore</span>/&gt;</span>
+                    <span class="hidden md:block text-xs px-2 py-1 bg-slate-100 rounded text-slate-500 font-semibold tracking-wider">CEO @ NEURALFLOW</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-slate-600 hover:text-brand-blue transition-colors">Home</a>
+                    <a href="#about-me" class="text-sm font-medium text-slate-600 hover:text-brand-blue transition-colors">About</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-600 hover:text-brand-blue transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-600 hover:text-brand-blue transition-colors">Projects</a>
+                    <a href="#contacts" class="px-5 py-2.5 rounded-full bg-brand-dark text-white text-sm font-semibold hover:bg-brand-blue transition-all shadow-lg hover:shadow-glow">
+                        Contact Me <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
 
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group">
-                            Home
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                        </a>
-                        <a href="#services" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group">
-                            Solutions
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                        </a>
-                        <a href="#team" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group">
-                            Team
-                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                        </a>
-                        <a href="#contact" class="px-5 py-2.5 text-sm font-medium rounded-full border border-white/10 hover:bg-white/5 hover:border-primary/50 transition-all text-white">
-                            Contact Us
-                        </a>
-                    </div>
-                </div>
-
                 <div class="md:hidden">
-                    <button onclick="toggleMenu()" class="text-gray-300 hover:text-white p-2">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button onclick="toggleMenu()" class="text-slate-800 text-2xl">
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
-
-        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full glass-card border-b border-white/10">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium text-white hover:bg-white/5">Home</a>
-                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Solutions</a>
-                <a href="#team" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Team</a>
-                <a href="#contact" class="block px-3 py-3 mt-4 text-center rounded-md text-base font-bold bg-primary text-white shadow-lg shadow-primary/20">Start Project</a>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full">
+            <div class="flex flex-col px-4 py-4 space-y-4">
+                <a href="#home" class="text-slate-700 font-medium">Home</a>
+                <a href="#projects" class="text-slate-700 font-medium">Projects</a>
+                <a href="#skills" class="text-slate-700 font-medium">Skills</a>
+                <a href="#contacts" class="text-brand-blue font-bold">Contact Me</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute bottom-0 w-full h-1/2 tech-grid z-0"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 reveal">
-                <span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-sm text-gray-300 font-medium tracking-wide">Agency Online • Accepting New Clients</span>
-            </div>
+    <section id="home" class="relative bg-brand-dark min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="blob bg-brand-blue w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="blob bg-purple-600 w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/2 translate-y-1/2"></div>
 
-            <h1 class="text-5xl md:text-8xl font-display font-bold tracking-tight mb-8 reveal" style="transition-delay: 100ms;">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400">Architecting the</span><br>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-purple-500 text-glow">Intelligence of Tomorrow</span>
-            </h1>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-slate-300 text-xs font-bold tracking-wide uppercase">Available for Projects</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-heading font-bold text-white leading-tight mb-6">
+                        I Build Scalable <br>
+                        <span class="gradient-text">Digital Solutions</span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        I'm <strong>Sawan Rathore</strong>, a Full-Stack Python Developer and CEO of NeuralFlow. 
+                        I specialize in building responsive web apps using Flask, React, and MongoDB.
+                        <br><br>
+                        <span class="italic text-white border-l-4 border-brand-accent pl-4 block mt-2">
+                            "You focus on your business, I’ll handle the tech that drives it."
+                        </span>
+                    </p>
 
-            <p class="mt-4 text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed reveal" style="transition-delay: 200ms;">
-                We bridge the gap between complex algorithms and human experience. 
-                Scalable AI solutions for businesses ready to dominate their industry.
-            </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://sawan-taupe.vercel.app/#projects" target="_blank" class="px-8 py-4 rounded-xl bg-white text-brand-dark font-bold hover:bg-slate-200 transition-all transform hover:scale-105 shadow-xl">
+                            <i class="fas fa-external-link-alt mr-2"></i> View Live Portfolio
+                        </a>
+                        <a href="#contacts" class="px-8 py-4 rounded-xl border border-slate-600 text-white font-medium hover:bg-slate-800 transition-all">
+                            Get in Touch
+                        </a>
+                    </div>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal" style="transition-delay: 300ms;">
-                <a href="#contact" class="group relative px-8 py-4 bg-white text-black rounded-full font-bold text-lg transition-transform hover:scale-105 overflow-hidden">
-                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-primary via-accent to-primary opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                    <span class="relative flex items-center gap-2">
-                        Launch Project <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
-                    </span>
-                </a>
-                <a href="#services" class="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 text-white font-medium text-lg transition-all hover:border-white/40">
-                    Explore Solutions
-                </a>
+                    <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-slate-500">
+                        <span class="text-sm uppercase tracking-wider">Working with:</span>
+                        <span class="text-white font-bold text-lg"><i class="fas fa-rocket text-brand-accent mr-2"></i>Vigisolvo</span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block relative">
+                    <div class="relative rounded-2xl bg-slate-800 border border-slate-700 p-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-500">
+                        <div class="flex items-center gap-2 mb-4 border-b border-slate-700 pb-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs text-slate-500 ml-2">ceo_config.py</span>
+                        </div>
+                        <pre class="font-mono text-sm text-slate-300 overflow-x-auto">
+<code>class <span class="text-brand-accent">SawanRathore</span>:
+    def __init__(self):
+        self.role = "CEO & Developer"
+        self.agency = "NeuralFlow"
+        self.stack = ["Python", "React", "MongoDB"]
+        self.location = "Indore, India"
+
+    def mission(self):
+        return "Delivering high-impact tech solutions"
+
+current_status = "Open for Business 🚀"</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="border-y border-white/5 bg-white/[0.02] backdrop-blur-sm relative z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="reveal">
-                    <div class="text-4xl font-display font-bold text-white mb-1">98%</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wider">Accuracy Rate</div>
-                </div>
-                <div class="reveal" style="transition-delay: 100ms;">
-                    <div class="text-4xl font-display font-bold text-white mb-1">50+</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wider">Enterprise Clients</div>
-                </div>
-                <div class="reveal" style="transition-delay: 200ms;">
-                    <div class="text-4xl font-display font-bold text-white mb-1">24/7</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wider">System Uptime</div>
-                </div>
-                <div class="reveal" style="transition-delay: 300ms;">
-                    <div class="text-4xl font-display font-bold text-white mb-1">10M+</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wider">Predictions Made</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="services" class="py-32 relative z-10">
+    <section id="about-me" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 reveal">
-                <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Our Expertise</h2>
-                <h3 class="text-4xl md:text-5xl font-display font-bold text-white">Engineered for Impact</h3>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold text-slate-900 mb-4">About The CEO</h2>
+                <div class="w-20 h-1 bg-brand-blue mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+                    I don't just write code; I solve problems. From building scalable backends to crafting intuitive frontends, I focus on delivering value.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl hover:-translate-y-2 transition-all duration-500 group reveal">
-                    <div class="w-14 h-14 bg-surface border border-white/10 rounded-2xl flex items-center justify-center mb-8 group-hover:border-primary/50 transition-colors">
-                        <i class="fa-solid fa-microchip text-2xl text-primary group-hover:animate-pulse"></i>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-elegant transition-all duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600 text-2xl">
+                        <i class="fas fa-university"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-4 font-display">Custom AI Development</h4>
-                    <p class="text-gray-400 leading-relaxed mb-6">Tailor-made neural networks designed to solve your specific business bottlenecks with precision.</p>
-                    <a href="#" class="text-primary font-medium hover:text-accent transition-colors flex items-center gap-2">Learn more <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">IIT Indore (Drishti CPS)</h3>
+                    <span class="text-xs font-bold text-brand-blue uppercase tracking-wide">Internship</span>
+                    <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+                        Worked on Real-time APIs & secure Payment Gateway integration. Gained deep insights into scalable system architecture.
+                    </p>
                 </div>
 
-                <div class="glass-card p-8 rounded-3xl hover:-translate-y-2 transition-all duration-500 group reveal" style="transition-delay: 100ms;">
-                    <div class="w-14 h-14 bg-surface border border-white/10 rounded-2xl flex items-center justify-center mb-8 group-hover:border-accent/50 transition-colors">
-                        <i class="fa-solid fa-eye text-2xl text-accent group-hover:animate-pulse"></i>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-elegant transition-all duration-300">
+                    <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-6 text-amber-600 text-2xl">
+                        <i class="fas fa-shopping-bag"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-4 font-display">Computer Vision</h4>
-                    <p class="text-gray-400 leading-relaxed mb-6">Automated visual inspection, facial recognition, and object detection systems with 99.9% accuracy.</p>
-                    <a href="#" class="text-accent font-medium hover:text-white transition-colors flex items-center gap-2">Learn more <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">CraftNDecors</h3>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wide">Freelance</span>
+                    <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+                        Developed a full E-commerce solution with automated Order Tracking systems, improving customer retention by 40%.
+                    </p>
                 </div>
 
-                <div class="glass-card p-8 rounded-3xl hover:-translate-y-2 transition-all duration-500 group reveal" style="transition-delay: 200ms;">
-                    <div class="w-14 h-14 bg-surface border border-white/10 rounded-2xl flex items-center justify-center mb-8 group-hover:border-purple-500/50 transition-colors">
-                        <i class="fa-solid fa-comments text-2xl text-purple-500 group-hover:animate-pulse"></i>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-elegant transition-all duration-300">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-green-600 text-2xl">
+                        <i class="fas fa-rocket"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-4 font-display">NLP & Automation</h4>
-                    <p class="text-gray-400 leading-relaxed mb-6">Intelligent chatbots and workflow automation that understand context, sentiment, and intent.</p>
-                    <a href="#" class="text-purple-500 font-medium hover:text-white transition-colors flex items-center gap-2">Learn more <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Vigisolvo</h3>
+                    <span class="text-xs font-bold text-green-600 uppercase tracking-wide">Current Role</span>
+                    <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+                        Focusing on Backend Optimization & Security protocols to ensure high-performance data handling for enterprise clients.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="team" class="py-32 relative bg-surface/30 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 px-4 reveal">
-                <div>
-                    <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Leadership</h2>
-                    <h3 class="text-4xl md:text-5xl font-display font-bold text-white">Minds Behind the Machine</h3>
-                </div>
-                <p class="text-gray-400 max-w-md mt-4 md:mt-0">A collective of visionaries and stealth engineers dedicated to pushing the boundaries of AGI.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                
-                <div class="glass-card p-1 rounded-3xl group reveal hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
-                    <div class="bg-[#0B101B] rounded-[20px] p-6 h-full flex flex-col relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-primary/20"></div>
-                        
-                        <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 mb-6 overflow-hidden border-2 border-white/5 group-hover:border-primary/50 transition-colors">
-                            <img src="/api/placeholder/150/150" alt="CEO" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                        </div>
-
-                        <h4 class="text-2xl font-display font-bold text-white mb-1">Your Name</h4>
-                        <div class="text-primary font-medium text-sm mb-4">Founder & CEO</div>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            Visionary leader with deep expertise in Python architecture and AI deployment. Steering NeuralFlow towards the singularity.
-                        </p>
-                        
-                        <div class="mt-auto flex gap-4">
-                            <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-card p-1 rounded-3xl group reveal opacity-80 hover:opacity-100 transition-all duration-500" style="transition-delay: 100ms;">
-                    <div class="bg-[#0B101B] rounded-[20px] p-6 h-full flex flex-col relative overflow-hidden border border-dashed border-white/10">
-                        <div class="absolute top-4 right-4 px-2 py-1 bg-red-500/10 border border-red-500/30 rounded text-[10px] font-mono text-red-500 uppercase tracking-widest">
-                            Classified
-                        </div>
-
-                        <div class="w-24 h-24 rounded-2xl bg-black mb-6 flex items-center justify-center border border-white/5">
-                            <i class="fa-solid fa-user-secret text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
-                        </div>
-
-                        <h4 class="text-2xl font-display font-bold text-gray-500 glitch-text cursor-default">Unknown Entity</h4>
-                        <div class="text-gray-600 font-mono text-xs mb-4 uppercase tracking-wider">/// Stealth Mode</div>
-                        
-                        <p class="text-gray-500 text-sm leading-relaxed mb-6 font-mono">
-                            [DATA REDACTED]<br>
-                            Specialist in Neural Architecture Search.<br>
-                            Currently operating in stealth.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="glass-card p-1 rounded-3xl group reveal opacity-80 hover:opacity-100 transition-all duration-500" style="transition-delay: 200ms;">
-                    <div class="bg-[#0B101B] rounded-[20px] p-6 h-full flex flex-col relative overflow-hidden border border-dashed border-white/10">
-                        <div class="absolute top-4 right-4 px-2 py-1 bg-red-500/10 border border-red-500/30 rounded text-[10px] font-mono text-red-500 uppercase tracking-widest">
-                            Classified
-                        </div>
-
-                        <div class="w-24 h-24 rounded-2xl bg-black mb-6 flex items-center justify-center border border-white/5">
-                            <i class="fa-solid fa-mask text-3xl text-gray-600 group-hover:text-white transition-colors"></i>
-                        </div>
-
-                        <h4 class="text-2xl font-display font-bold text-gray-500 glitch-text cursor-default">System Admin</h4>
-                        <div class="text-gray-600 font-mono text-xs mb-4 uppercase tracking-wider">/// Stealth Mode</div>
-                        
-                        <p class="text-gray-500 text-sm leading-relaxed mb-6 font-mono">
-                            [DATA REDACTED]<br>
-                            Expert in large scale infrastructure.<br>
-                            Identity protected for security.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-bg via-primary/5 to-bg pointer-events-none"></div>
-        <div class="max-w-5xl mx-auto px-4 relative z-10 text-center reveal">
-            <h2 class="text-5xl md:text-7xl font-display font-bold text-white mb-8">Ready to <span class="text-primary">Upgrade?</span></h2>
-            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                The future doesn't wait. Schedule a consultation today and see how NeuralFlow can optimize your business infrastructure.
-            </p>
             
-            <div class="glass-card p-10 rounded-3xl max-w-3xl mx-auto text-left">
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-2">Name</label>
-                            <input type="text" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
-                            <input type="email" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="john@company.com">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
-                        <textarea rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Tell us about your project..."></textarea>
-                    </div>
-                    <button class="w-full bg-gradient-to-r from-primary to-accent py-4 rounded-xl text-white font-bold text-lg shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.01] transition-all">
-                        Send Transmission
-                    </button>
-                </form>
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-slate-900 font-bold hover:text-brand-blue transition-colors">
+                    <i class="fas fa-file-alt mr-2"></i> Download My Resume
+                </a>
             </div>
         </div>
     </section>
 
-    <footer class="border-t border-white/5 bg-black py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-brain text-gray-500"></i>
-                <span class="font-display font-bold text-gray-300">NeuralFlow</span>
+    <section id="skills" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold mb-4">Technical Arsenal</h2>
+                <p class="text-slate-400">The tools I use to bring ideas to life.</p>
             </div>
-            <div class="text-gray-600 text-sm">
-                &copy; 2024 NeuralFlow AI Agency. All rights reserved.
-            </div>
-            <div class="flex gap-6">
-                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <div class="col-span-2 md:col-span-3 lg:col-span-2 bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-brand-blue transition-all">
+                    <div class="flex items-center gap-3 mb-4 text-brand-blue">
+                        <i class="fas fa-code text-xl"></i>
+                        <h3 class="font-bold">Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Python</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">SQL</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">C++</span>
+                    </div>
+                </div>
+
+                <div class="col-span-2 md:col-span-3 lg:col-span-2 bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-brand-blue transition-all">
+                    <div class="flex items-center gap-3 mb-4 text-brand-blue">
+                        <i class="fab fa-react text-xl"></i>
+                        <h3 class="font-bold">Frameworks</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">React.js</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Django</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Flask</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">SQLAlchemy</span>
+                    </div>
+                </div>
+
+                <div class="col-span-2 md:col-span-3 lg:col-span-2 bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-brand-blue transition-all">
+                    <div class="flex items-center gap-3 mb-4 text-brand-blue">
+                        <i class="fas fa-database text-xl"></i>
+                        <h3 class="font-bold">Databases</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="col-span-2 md:col-span-3 lg:col-span-3 bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-brand-blue transition-all">
+                    <div class="flex items-center gap-3 mb-4 text-brand-blue">
+                        <i class="fas fa-cloud text-xl"></i>
+                        <h3 class="font-bold">Deployment & Tools</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">AWS</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Docker</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Git/GitHub</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Vercel</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Linux</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">Postman</span>
+                    </div>
+                </div>
+                
+                <div class="col-span-2 md:col-span-3 lg:col-span-3 bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-brand-blue transition-all">
+                    <div class="flex items-center gap-3 mb-4 text-brand-blue">
+                        <i class="fas fa-brain text-xl"></i>
+                        <h3 class="font-bold">Concepts</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">DSA</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">OOPs</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">REST APIs</span>
+                        <span class="px-3 py-1 bg-slate-700 rounded-md text-sm">System Design</span>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-heading font-bold text-slate-900 mb-2">Featured Work</h2>
+                    <p class="text-slate-600">Select projects delivered by NeuralFlow.</p>
+                </div>
+                <a href="https://sawan-taupe.vercel.app/#projects" target="_blank" class="mt-4 md:mt-0 text-brand-blue font-bold hover:underline flex items-center">
+                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-elegant transition-all group">
+                    <div class="h-48 bg-slate-200 overflow-hidden relative">
+                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+                             <h3 class="text-white text-2xl font-bold">Dot Digital Agency</h3>
+                         </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 mb-4 text-sm">A high-performance digital marketing platform. Built using pure HTML, CSS, and JS for maximum speed and SEO efficiency.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 bg-orange-100 text-orange-600 text-xs font-bold rounded">HTML5</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded">CSS3</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-600 text-xs font-bold rounded">JS</span>
+                        </div>
+                        <a href="#" class="w-full block text-center py-3 border border-slate-200 rounded-xl text-slate-700 font-bold hover:bg-slate-50 transition-colors">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-elegant transition-all group">
+                    <div class="h-48 bg-slate-200 overflow-hidden relative">
+                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+                             <h3 class="text-white text-2xl font-bold">Sonar Saaj</h3>
+                         </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 mb-4 text-sm">Premium e-commerce jewelry store. Features fully functional cart, secure payments, and dynamic inventory using WooCommerce.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded">WordPress</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-bold rounded">WooCommerce</span>
+                        </div>
+                        <a href="#" class="w-full block text-center py-3 border border-slate-200 rounded-xl text-slate-700 font-bold hover:bg-slate-50 transition-colors">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-elegant transition-all group">
+                    <div class="h-48 bg-slate-200 overflow-hidden relative">
+                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+                             <h3 class="text-white text-2xl font-bold">Manan</h3>
+                         </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 mb-4 text-sm">A creative storytelling platform for artists. Robust Node.js backend handling user stories and media securely.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 bg-cyan-100 text-cyan-600 text-xs font-bold rounded">React</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-600 text-xs font-bold rounded">Node.js</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-600 text-xs font-bold rounded">MongoDB</span>
+                        </div>
+                        <a href="#" class="w-full block text-center py-3 border border-slate-200 rounded-xl text-slate-700 font-bold hover:bg-slate-50 transition-colors">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-elegant transition-all group">
+                    <div class="h-48 bg-slate-200 overflow-hidden relative">
+                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+                             <h3 class="text-white text-2xl font-bold">Xenturalt Solutions</h3>
+                         </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 mb-4 text-sm">Corporate IT solutions portal. Designed for scalability with a focus on modern UI/UX principles and fast load times.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 bg-cyan-100 text-cyan-600 text-xs font-bold rounded">React</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded">Express</span>
+                            <span class="px-2 py-1 bg-red-100 text-red-600 text-xs font-bold rounded">Axios</span>
+                        </div>
+                        <a href="#" class="w-full block text-center py-3 border border-slate-200 rounded-xl text-slate-700 font-bold hover:bg-slate-50 transition-colors">View Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-white mb-2">The NeuralFlow Team</h2>
+                <p class="text-slate-400">Small team. Massive impact.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-b from-slate-800 to-slate-900 p-1 rounded-2xl">
+                    <div class="bg-slate-800 p-8 rounded-xl h-full text-center hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-brand-blue"></div>
+                        <div class="w-24 h-24 mx-auto bg-slate-700 rounded-full mb-4 flex items-center justify-center border-2 border-brand-blue">
+                           <i class="fas fa-user-tie text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Sawan Rathore</h3>
+                        <p class="text-brand-blue font-bold text-sm mb-4">Founder & CEO</p>
+                        <p class="text-slate-400 text-sm">Full-Stack Architect & Lead Developer.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-xl h-full text-center opacity-70 hover:opacity-100 transition-opacity">
+                    <div class="w-24 h-24 mx-auto bg-black rounded-full mb-4 flex items-center justify-center border border-slate-700">
+                       <i class="fas fa-user-secret text-3xl text-slate-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-500 font-mono">[REDACTED]</h3>
+                    <p class="text-slate-600 font-bold text-sm mb-4">Sr. Engineer (Stealth)</p>
+                    <p class="text-slate-600 text-sm font-mono text-xs">/// CLASSIFIED ///</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-xl h-full text-center opacity-70 hover:opacity-100 transition-opacity">
+                    <div class="w-24 h-24 mx-auto bg-black rounded-full mb-4 flex items-center justify-center border border-slate-700">
+                       <i class="fas fa-mask text-3xl text-slate-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-500 font-mono">[REDACTED]</h3>
+                    <p class="text-slate-600 font-bold text-sm mb-4">System Admin (Stealth)</p>
+                    <p class="text-slate-600 text-sm font-mono text-xs">/// CLASSIFIED ///</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts" class="py-24 bg-blue-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiLz48L3N2Zz4=')]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-4xl font-heading font-bold text-white mb-6">Let's Create Something Impactful</h2>
+                    <p class="text-blue-100 mb-8 text-lg">
+                        I’m actively looking for freelance opportunities and remote work. Whether you have a question, a project idea, or just want to say hi!
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 text-white group cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center group-hover:bg-brand-accent transition-colors">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-blue-200">Email me</p>
+                                <p class="font-bold">sawanrathore815@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 text-white group cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center group-hover:bg-brand-accent transition-colors">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-blue-200">Call me</p>
+                                <p class="font-bold">+91 8305761782</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 text-white">
+                            <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-blue-200">Location</p>
+                                <p class="font-bold">Indore, Madhya Pradesh</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">Send a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Your Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition-colors" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition-colors" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition-colors" placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        <button class="w-full py-4 bg-brand-blue text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-8 text-center text-slate-500 text-sm border-t border-slate-900">
+        <p>&copy; 2025 Sawan Rathore & NeuralFlow. Built with <i class="fas fa-heart text-red-500"></i> using React & Flask.</p>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
         function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
 
-        // Scroll Reveal Animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        // Trigger once on load
-        reveal();
-
-        // Navbar Glitch on Scroll
-        window.addEventListener('scroll', () => {
+        // Change navbar style on scroll
+        window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-2xl', 'shadow-primary/5');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg');
             } else {
-                navbar.classList.remove('shadow-2xl', 'shadow-primary/5');
+                navbar.classList.remove('shadow-lg');
             }
         });
     </script>
